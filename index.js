@@ -5,8 +5,8 @@ require('dotenv').config({path: __dirname + '/.env'})
 const client = new tmi.Client({
 	options: { debug: true },
 	identity: {
-			username: 'MaesONE',
-		password: 'oauth:gg3p17y3ifnnd0lrj06u0d5fcmf8yi'
+			username: 'MaesOneBOT',
+		password: 'oauth:vxh719e03arfqgl7aqil89dg2w9lhj'
 	},
 	channels: [ 'Rogu' ]
 });
