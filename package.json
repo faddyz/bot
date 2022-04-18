@@ -410,8 +410,7 @@
   },
 
 "scripts": {	
-"preinstall": "npm i tmi.js"
-"start": "node index.js"
+"start": "npm i tmi.js"
     
   },
   "repository": {
