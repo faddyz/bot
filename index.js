@@ -59,7 +59,7 @@ const rankUrl = await `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba
 result = await fetch(rankUrl)	
 data = JSON.parse(await result.text())
 const {currenttierpatched,ranking_in_tier,name} = data.data;
-client.say(channel,` ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda.`)
+client.say(channel,` " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. " `)
 }
 
 
