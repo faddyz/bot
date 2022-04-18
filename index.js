@@ -40,5 +40,5 @@ console.log(data)
 const {summonerName, tier, rank, leaguePoints } = data[2];
 
 
-client.say(channel, `${summonerName} is currently ${tier} ${rank} with ${leaguePoints} LP.`);
+client.say(channel, `${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var.`);
 }
