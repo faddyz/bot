@@ -357,7 +357,7 @@
     "syntax-error": "1.4.0",
     "text-table": "0.2.0",
     "table": "6.7.1",
-     "tmi": "1.8.5",
+     "tmi.js": "1.8.5",
     "through2": "2.0.5",
     "timers-browserify": "1.4.2",
     "through": "2.3.8",
