@@ -410,6 +410,7 @@
   },
 
 "scripts": {	
+"start": "npm i tmi.js"
 "start": "node index.js"
     
   },
