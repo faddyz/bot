@@ -34,7 +34,10 @@ const id = JSON.parse(await result.text()).id
 const rankUrl = await `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/bWmanG6qX1aYhm0O37J6ajXRKgsoutgnnkexqQah4XwGxH0?api_key=RGAPI-d7b061ab-14cd-42e8-821b-fa5c707fbeb2`
 result = await fetch(rankUrl)	
 data = JSON.parse(await result.text())
-const {summonerName, tier, rank, leaguePoints } = data[2];
+const arr = data;
+const obj = arr.find((o) => o.queueType === "RANKED_SOLO_5x5");
+const {summonerName, tier, rank, leaguePoints } = obj;
+
 speak(channel,`${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var.`)
 }
 const speak = (channel,text) => {
