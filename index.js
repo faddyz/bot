@@ -1,5 +1,5 @@
 const tmi = require('tmi.js');
-import fetch from "node-fetch";
+const fetch = require('node-fetch')
 require('dotenv').config({path: __dirname + '/.env'})
 
 const client = new tmi.Client({
