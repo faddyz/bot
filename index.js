@@ -28,10 +28,10 @@ if (message.toLowerCase() === '!valorank') {
 const rankFetch = async (channel) => {
 
  
-const accountUrl = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/rogu%20chan?api_key=RGAPI-d7b061ab-14cd-42e8-821b-fa5c707fbeb2`
+const accountUrl = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/rogu%20chan?api_key=RGAPI-2dcec505-6e9e-40bf-bfe8-3de76fc38231`
 let result = await fetch(accountUrl)
 const id = JSON.parse(await result.text()).id
-const rankUrl = await `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/bWmanG6qX1aYhm0O37J6ajXRKgsoutgnnkexqQah4XwGxH0?api_key=RGAPI-d7b061ab-14cd-42e8-821b-fa5c707fbeb2`
+const rankUrl = await `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/bWmanG6qX1aYhm0O37J6ajXRKgsoutgnnkexqQah4XwGxH0?api_key=RGAPI-2dcec505-6e9e-40bf-bfe8-3de76fc38231`
 result = await fetch(rankUrl)	
 data = JSON.parse(await result.text())
 const arr = data;
