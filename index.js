@@ -71,5 +71,5 @@ valdata = JSON.parse(await result.text())
 	
 
 
-	  setTimeout(intervalFunc, 3500);
+	  setTimeout(intervalFunc, 4000);
 }
