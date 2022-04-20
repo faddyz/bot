@@ -8,7 +8,7 @@ const client = new tmi.Client({
 			username: 'MaesOneBOT',
 		password: 'oauth:vxh719e03arfqgl7aqil89dg2w9lhj'
 	},
-	channels: [ 'Rogu' ]
+	channels: [ 'maesone' ]
 });
 client.connect();
 client.on('message', (channel, tags, message, self) => {
@@ -25,20 +25,6 @@ if (message.toLowerCase() === '!rank') {
 });
 
 
-const valorankFetch = async (channel) => {
-
- 
-const accountUrl = `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
-let result = await fetch(accountUrl)
-const id = JSON.parse(await result.text()).id
-const rankUrl = await `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
-result = await fetch(rankUrl)	
-valdata = JSON.parse(await result.text())
-const {currenttierpatched,ranking_in_tier,name} = valdata.data;
-
-client.say(channel,`Valo: " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. " `)
-}
-
 const rankFetch = async (channel) => {
 
  
@@ -49,13 +35,9 @@ const rankFetch = async (channel) => {
 	result = await fetch(rankUrl)	
 	data = JSON.parse(await result.text())
 	const arr = data;
-	function intervalFunc(data) {
-
-		const obj = arr.find((o) => o.queueType === "RANKED_SOLO_5x5");
+	const obj = arr.find((o) => o.queueType === "RANKED_SOLO_5x5");
 		const {summonerName, tier, rank, leaguePoints } = obj;
-	
-	
-	speak(channel,`LoL: ${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var.`)
+		speak(channel,`LoL: ${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var.`)
 	}
 	const speak = (channel,text) => {
 	console.log(channel)
@@ -69,6 +51,24 @@ const rankFetch = async (channel) => {
 	client.say(channel, text);
 	}
 
+
+const valorankFetch = async (channel) => {
+
+ 
+	const accountUrl = `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
+let result = await fetch(accountUrl)
+const id = JSON.parse(await result.text()).id
+const rankUrl = await `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
+result = await fetch(rankUrl)	
+valdata = JSON.parse(await result.text())
+
+	function intervalFunc(data) {
+
+		const {currenttierpatched,ranking_in_tier,name} = valdata.data;
+	
+		client.say(channel,`Valo: " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. " `)
+	}
+	
 
 
 	  setTimeout(intervalFunc, 3100);
