@@ -19,38 +19,11 @@ if(message.toLowerCase() === '!test') {
 if (message.toLowerCase() === '!rank') {
  rankFetch(channel)
 
-}
-if (message.toLowerCase() === '!valorank') {
 
  valorankFetch(channel)
 }
 });
-const rankFetch = async (channel) => {
 
- 
-const accountUrl = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/rogu%20chan?api_key=RGAPI-2dcec505-6e9e-40bf-bfe8-3de76fc38231`
-let result = await fetch(accountUrl)
-const id = JSON.parse(await result.text()).id
-const rankUrl = await `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/bWmanG6qX1aYhm0O37J6ajXRKgsoutgnnkexqQah4XwGxH0?api_key=RGAPI-2dcec505-6e9e-40bf-bfe8-3de76fc38231`
-result = await fetch(rankUrl)	
-data = JSON.parse(await result.text())
-const arr = data;
-const obj = arr.find((o) => o.queueType === "RANKED_SOLO_5x5");
-const {summonerName, tier, rank, leaguePoints } = obj;
-
-speak(channel,`${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var.`)
-}
-const speak = (channel,text) => {
-console.log(channel)
-console.log(text)
-
-
-
-
-
-
-client.say(channel, text);
-}
 
 const valorankFetch = async (channel) => {
 
@@ -60,9 +33,43 @@ let result = await fetch(accountUrl)
 const id = JSON.parse(await result.text()).id
 const rankUrl = await `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
 result = await fetch(rankUrl)	
-data = JSON.parse(await result.text())
-const {currenttierpatched,ranking_in_tier,name} = data.data;
-client.say(channel,` " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. " `)
+valdata = JSON.parse(await result.text())
+const {currenttierpatched,ranking_in_tier,name} = valdata.data;
+
+client.say(channel,`Valo: " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. " `)
 }
 
+const rankFetch = async (channel) => {
 
+ 
+	const accountUrl = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/rogu%20chan?api_key=RGAPI-2dcec505-6e9e-40bf-bfe8-3de76fc38231`
+	let result = await fetch(accountUrl)
+	const id = JSON.parse(await result.text()).id
+	const rankUrl = await `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/bWmanG6qX1aYhm0O37J6ajXRKgsoutgnnkexqQah4XwGxH0?api_key=RGAPI-2dcec505-6e9e-40bf-bfe8-3de76fc38231`
+	result = await fetch(rankUrl)	
+	data = JSON.parse(await result.text())
+	const arr = data;
+	function intervalFunc(data) {
+
+		const obj = arr.find((o) => o.queueType === "RANKED_SOLO_5x5");
+		const {summonerName, tier, rank, leaguePoints } = obj;
+	
+	
+	speak(channel,`LoL: ${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var.`)
+	}
+	const speak = (channel,text) => {
+	console.log(channel)
+	console.log(text)
+	
+	
+	
+	
+	
+	
+	client.say(channel, text);
+	}
+
+
+
+	  setTimeout(intervalFunc, 3000);
+}
