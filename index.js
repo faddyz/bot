@@ -71,5 +71,5 @@ const rankFetch = async (channel) => {
 
 
 
-	  setTimeout(intervalFunc, 1500);
+	  setTimeout(intervalFunc, 3100);
 }
