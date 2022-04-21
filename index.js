@@ -8,7 +8,7 @@ const client = new tmi.Client({
 			username: 'MaesOneBOT',
 		password: 'oauth:vxh719e03arfqgl7aqil89dg2w9lhj'
 	},
-	channels: [ 'Rogu' ]
+	channels: [ 'rogu' ]
 });
 client.connect();
 client.on('message', (channel, tags, message, self) => {
@@ -17,15 +17,15 @@ if(message.toLowerCase() === '!test') {
  client.say(channel, `Test!`);
 }
 if (message.toLowerCase() === '!rank') {
- rankFetch(channel)
+ rankFetch(channel,tags)
 
 
- valorankFetch(channel)
+ valorankFetch(channel,tags)
 }
 });
 
 
-const rankFetch = async (channel) => {
+const rankFetch = async (channel,tags) => {
 
  
 	const accountUrl = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/rogu%20chan?api_key=RGAPI-4f6623cd-8ade-4775-b7d7-95d8d90842e3`
@@ -37,7 +37,7 @@ const rankFetch = async (channel) => {
 	const arr = data;
 	const obj = arr.find((o) => o.queueType === "RANKED_SOLO_5x5");
 		const {summonerName, tier, rank, leaguePoints } = obj;
-		speak(channel,`LoL: ${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var.`)
+		speak(channel,`LoL:" ${summonerName} şu anda ${tier} ${rank} ve ${leaguePoints} LP'si var. @${tags.username} " `)
 	}
 	const speak = (channel,text) => {
 	console.log(channel)
@@ -52,7 +52,7 @@ const rankFetch = async (channel) => {
 	}
 
 
-const valorankFetch = async (channel) => {
+const valorankFetch = async (channel,tags) => {
 
  
 	const accountUrl = `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
@@ -66,7 +66,7 @@ valdata = JSON.parse(await result.text())
 
 		const {currenttierpatched,ranking_in_tier,name} = valdata.data;
 	
-		client.say(channel,`Valo: " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. " `)
+		client.say(channel,`Valo: " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. @${tags.username} " `)
 	}
 	
 
