@@ -8,7 +8,7 @@ const client = new tmi.Client({
 			username: 'MaesOneBOT',
 		password: 'oauth:vxh719e03arfqgl7aqil89dg2w9lhj'
 	},
-	channels: [ 'rogu' ]
+	channels: [ 'maesone' ]
 });
 client.connect();
 client.on('message', (channel, tags, message, self) => {
@@ -17,9 +17,8 @@ if(message.toLowerCase() === '!test') {
  client.say(channel, `Test!`);
 }
 if (message.toLowerCase() === '!rank') {
- rankFetch(channel,tags)
-
-
+	rankFetch(channel,tags)
+ 
  valorankFetch(channel,tags)
 }
 });
@@ -65,11 +64,31 @@ valdata = JSON.parse(await result.text())
 	function intervalFunc(data) {
 
 		const {currenttierpatched,ranking_in_tier,name} = valdata.data;
-	
 		client.say(channel,`Valo: " ${name} şu an ${currenttierpatched} ${ranking_in_tier} puanda. @${tags.username} " `)
 	}
 	
 
 
 	  setTimeout(intervalFunc, 4000);
+	}
+
+
+
+
+	client.on('message', (channel, tags, message, self) => {
+	if(message.toLowerCase() === '!valosonmaç')
+	lastFetch(channel,tags)
+});
+	const lastFetch = async (channel,tags) => {
+	 
+	  const macUrl = await `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
+result = await fetch(macUrl)	
+valdata = JSON.parse(await result.text())
+const {mmr_change_to_last_game} = valdata.data;
+	{
+      if(mmr_change_to_last_game<0)
+		client.say(channel,`Valorant son maç: "Lose" ve giden puan ${mmr_change_to_last_game}.`)
+		else 
+		client.say(channel,`Valorant son maç "Win" ve gelen puan ${mmr_change_to_last_game}. `)}
+	
 }
