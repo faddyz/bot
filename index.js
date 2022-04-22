@@ -84,11 +84,12 @@ valdata = JSON.parse(await result.text())
 	  const macUrl = await `https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/fba1aaea-1e89-51c9-8ff5-04b43fd781df`
 result = await fetch(macUrl)	
 valdata = JSON.parse(await result.text())
-const {mmr_change_to_last_game} = valdata.data;
+const {mmr_change_to_last_game,ranking_in_tier} = valdata.data;
 	{
       if(mmr_change_to_last_game<0)
-		client.say(channel,`Valorant son maç: "Lose" ve giden puan ${mmr_change_to_last_game}.`)
+		client.say(channel,`Valorant son maç: "Lose" ve giden puan "${mmr_change_to_last_game}"; Güncel puan: "${ranking_in_tier}" .`)
 		else 
-		client.say(channel,`Valorant son maç "Win" ve gelen puan ${mmr_change_to_last_game}. `)}
+		client.say(channel,`Valorant son maç "Win" ve gelen puan "${mmr_change_to_last_game}"; Güncel puan: "${ranking_in_tier}" .`)
 	
 }
+	}
