@@ -8,7 +8,7 @@ const client = new tmi.Client({
 			username: 'MaesOneBOT',
 		password: 'oauth:vxh719e03arfqgl7aqil89dg2w9lhj'
 	},
-	channels: [ 'maesone' ]
+	channels: [ 'Rogu' ]
 });
 
 client.connect();
