@@ -25,10 +25,10 @@ client.on('message', (channel, tags, message, self) => {
 const rankFetch = async (channel,tags) => {
 
  
-	const accountUrl = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/rogu%20chan?api_key=RGAPI-87079135-fd2e-4430-973b-9af76f409e64`
+	const accountUrl = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/rogu%20chan?api_key=RGAPI-5f4ad909-6fb6-4adc-bce2-fb79df1ee335`
 	let result = await fetch(accountUrl)
 	const id = JSON.parse(await result.text()).id
-	const rankUrl = await `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/bWmanG6qX1aYhm0O37J6ajXRKgsoutgnnkexqQah4XwGxH0?api_key=RGAPI-87079135-fd2e-4430-973b-9af76f409e64`
+	const rankUrl = await `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/bWmanG6qX1aYhm0O37J6ajXRKgsoutgnnkexqQah4XwGxH0?api_key=RGAPI-5f4ad909-6fb6-4adc-bce2-fb79df1ee335`
 	result = await fetch(rankUrl)	
 	data = JSON.parse(await result.text())
 	if (active) {
@@ -116,4 +116,33 @@ const {mmr_change_to_last_game,ranking_in_tier} = valdata.data;
 	}
 	
 
-}}
+}
+}
+
+
+
+
+
+{
+	var active3 = true;
+	client.on('message', (channel, tags, message, self) =>{
+	if(message.toLowerCase() === '!iq') {
+		numberFetch(channel,tags)
+	}});
+	
+	const numberFetch = async (channel,tags) => {
+		if (active3) {
+    const max = 200
+    const min= 0
+    const result = Math.random()*(max - min) + min
+	console.log(Math.floor(result))
+		client.say(channel,`Senin iq'n: ${Math.floor(result)} gibi @${tags.username} LUL`)
+		active3 = false;
+		setTimeout(() => {
+			active3 = true;
+		}, 10000);
+		} else {
+		console.log(` cooldown` );
+		}
+		}
+		}
